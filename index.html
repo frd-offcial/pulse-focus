@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PulseFocus: An adaptive student productivity and habit tracker with burnout prevention engine." />
+  <title>PulseFocus | Student Productivity & Burnout Prevention</title>
+  
+  <!-- CSS Architecture -->
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- App Header & Navigation -->
+  <header class="app-header" role="banner">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <h1 class="logo">Pulse<span>Focus</span></h1>
+      </div>
+      
+      <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#focus-section" class="active">Focus</a></li>
+          <li><a href="#habits-section">Habits</a></li>
+          <li><a href="#analytics-section">Analytics</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-theme" aria-label="Toggle Dark and Light Mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout Grid -->
+  <main class="main-container" role="main">
+    
+    <!-- Top Welcome Banner -->
+    <section class="banner-card" aria-labelledby="welcome-heading">
+      <div>
+        <h2 id="welcome-heading">Welcome back, Scholar</h2>
+        <p class="subtitle">Maintain your study rhythm while keeping academic fatigue in check.</p>
+      </div>
+      <div class="quick-stats">
+        <div class="stat-pill">
+          <span class="stat-label">Daily Focus</span>
+          <strong id="dailyFocusTime">0m</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-label">Habits Done</span>
+          <strong id="habitsDoneRatio">0/0</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core 2-Column Responsive Dashboard -->
+    <div class="dashboard-grid">
+      
+      <!-- Left Column: Focus Engine (Timer) -->
+      <section id="focus-section" class="card timer-card" aria-labelledby="timer-heading">
+        <div class="card-header">
+          <h2 id="timer-heading">Focus Engine</h2>
+          <span id="cycleBadge" class="badge badge-focus">Focus Cycle</span>
+        </div>
+
+        <!-- Burnout Alert Banner (Hidden by default) -->
+        <div id="burnoutWarning" class="alert-box alert-warning hidden" role="alert">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>High Fatigue Warning!</strong>
+            <p>You have completed 4 consecutive study cycles. Mandatory 15-minute recovery break initiated.</p>
+          </div>
+        </div>
+
+        <div class="timer-wrapper">
+          <div class="timer-display" id="timeDisplay" aria-live="polite">25:00</div>
+          <p class="timer-subtext" id="timerModeText">Stay focused on a single task.</p>
+        </div>
+
+        <div class="timer-controls">
+          <button id="startBtn" class="btn btn-primary">Start</button>
+          <button id="pauseBtn" class="btn btn-secondary">Pause</button>
+          <button id="resetBtn" class="btn btn-ghost">Reset</button>
+        </div>
+
+        <div class="card-footer">
+          <span>Continuous Cycles: <strong id="sessionCount">0</strong>/4</span>
+        </div>
+      </section>
+
+      <!-- Right Column: Habit Tracker -->
+      <section id="habits-section" class="card habit-card" aria-labelledby="habits-heading">
+        <div class="card-header">
+          <h2 id="habits-heading">Daily Routine</h2>
+          <span id="streakBadge" class="badge badge-streak">0 Day Streak 🔥</span>
+        </div>
+
+        <form id="habitForm" class="habit-form" aria-label="Add new habit">
+          <input 
+            type="text" 
+            id="habitInput" 
+            placeholder="Add habit (e.g., Read documentation for 20m)..." 
+            required 
+            minlength="3" 
+            maxlength="50"
+            autocomplete="off"
+          />
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <ul id="habitList" class="habit-list" aria-live="polite">
+          <!-- Dynamically populated by JavaScript -->
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- Bottom Full-Width Section: Analytics & Insights -->
+    <section id="analytics-section" class="card analytics-card" aria-labelledby="analytics-heading">
+      <div class="card-header">
+        <h2 id="analytics-heading">Fatigue & Habit Balance</h2>
+        <span class="badge badge-info">Weekly Overview</span>
+      </div>
+      <div class="analytics-metrics">
+        <div class="metric-box">
+          <span class="metric-title">Burnout Risk Index</span>
+          <span class="metric-value low-risk" id="riskIndex">Low (Safe)</span>
+          <span class="metric-caption">Healthy work-to-rest ratio</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-title">Total Study Cycles</span>
+          <span class="metric-value" id="totalCycles">0</span>
+          <span class="metric-caption">Accumulated today</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-title">Active Habits</span>
+          <span class="metric-value" id="activeHabitsCount">0</span>
+          <span class="metric-caption">Routines tracked</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer" role="contentinfo">
+    <p>PulseFocus &bull; Web Development Mini-Project &bull; Group 4</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
